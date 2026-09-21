@@ -6,12 +6,13 @@ import { ServiceCard } from "@/components/civic/ServiceCard";
 import { CATEGORIES, LOCATIONS, searchServices, SERVICES } from "@/lib/civic-data";
 
 type ServiceSearch = { q: string; category: string; location: string };
+type ServiceSearchInput = { q?: string; category?: string; location?: string };
 
 export const Route = createFileRoute("/services/")({
-  validateSearch: (search: Record<string, unknown>): ServiceSearch => ({
-    q: typeof search["q"] === "string" ? search["q"] : "",
-    category: typeof search["category"] === "string" ? search["category"] : "all",
-    location: typeof search["location"] === "string" ? search["location"] : "All India",
+  validateSearch: (search: ServiceSearchInput): ServiceSearch => ({
+    q: typeof search.q === "string" ? search.q : "",
+    category: typeof search.category === "string" ? search.category : "all",
+    location: typeof search.location === "string" ? search.location : "All India",
   }),
   head: () => ({
     meta: [
@@ -33,7 +34,7 @@ export const Route = createFileRoute("/services/")({
 
 function ServicesPage() {
   const { q, category, location } = Route.useSearch();
-  const navigate = useNavigate({ from: "/services" });
+  const navigate = useNavigate({ from: "/services/" });
 
   const base = q ? searchServices(q) : SERVICES.map((service) => ({ service, reason: "" }));
   const results = base.filter(({ service }) => {
