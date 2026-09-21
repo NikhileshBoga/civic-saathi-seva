@@ -12,6 +12,9 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AssistantRouteImport } from './routes/assistant'
 import { Route as CentersRouteImport } from './routes/centers'
+import { Route as HelpRouteImport } from './routes/help'
+import { Route as SignInRouteImport } from './routes/sign-in'
+import { Route as TrackRouteImport } from './routes/track'
 import { Route as ServicesIndexRouteImport } from './routes/services.index'
 import { Route as ServicesSlugRouteImport } from './routes/services.$slug'
 
@@ -30,6 +33,21 @@ const CentersRoute = CentersRouteImport.update({
   path: '/centers',
   getParentRoute: () => rootRouteImport,
 } as any)
+const HelpRoute = HelpRouteImport.update({
+  id: '/help',
+  path: '/help',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SignInRoute = SignInRouteImport.update({
+  id: '/sign-in',
+  path: '/sign-in',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TrackRoute = TrackRouteImport.update({
+  id: '/track',
+  path: '/track',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ServicesIndexRoute = ServicesIndexRouteImport.update({
   id: '/services/',
   path: '/services/',
@@ -45,6 +63,9 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/assistant': typeof AssistantRoute
   '/centers': typeof CentersRoute
+  '/help': typeof HelpRoute
+  '/sign-in': typeof SignInRoute
+  '/track': typeof TrackRoute
   '/services/$slug': typeof ServicesSlugRoute
   '/services/': typeof ServicesIndexRoute
 }
@@ -52,6 +73,9 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/assistant': typeof AssistantRoute
   '/centers': typeof CentersRoute
+  '/help': typeof HelpRoute
+  '/sign-in': typeof SignInRoute
+  '/track': typeof TrackRoute
   '/services/$slug': typeof ServicesSlugRoute
   '/services': typeof ServicesIndexRoute
 }
@@ -60,19 +84,41 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/assistant': typeof AssistantRoute
   '/centers': typeof CentersRoute
+  '/help': typeof HelpRoute
+  '/sign-in': typeof SignInRoute
+  '/track': typeof TrackRoute
   '/services/$slug': typeof ServicesSlugRoute
   '/services/': typeof ServicesIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/assistant' | '/centers' | '/services/$slug' | '/services/'
+  fullPaths:
+    | '/'
+    | '/assistant'
+    | '/centers'
+    | '/help'
+    | '/sign-in'
+    | '/track'
+    | '/services/$slug'
+    | '/services/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/assistant' | '/centers' | '/services/$slug' | '/services'
+  to:
+    | '/'
+    | '/assistant'
+    | '/centers'
+    | '/help'
+    | '/sign-in'
+    | '/track'
+    | '/services/$slug'
+    | '/services'
   id:
     | '__root__'
     | '/'
     | '/assistant'
     | '/centers'
+    | '/help'
+    | '/sign-in'
+    | '/track'
     | '/services/$slug'
     | '/services/'
   fileRoutesById: FileRoutesById
@@ -81,6 +127,9 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AssistantRoute: typeof AssistantRoute
   CentersRoute: typeof CentersRoute
+  HelpRoute: typeof HelpRoute
+  SignInRoute: typeof SignInRoute
+  TrackRoute: typeof TrackRoute
   ServicesSlugRoute: typeof ServicesSlugRoute
   ServicesIndexRoute: typeof ServicesIndexRoute
 }
@@ -108,6 +157,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CentersRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/help': {
+      id: '/help'
+      path: '/help'
+      fullPath: '/help'
+      preLoaderRoute: typeof HelpRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sign-in': {
+      id: '/sign-in'
+      path: '/sign-in'
+      fullPath: '/sign-in'
+      preLoaderRoute: typeof SignInRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/track': {
+      id: '/track'
+      path: '/track'
+      fullPath: '/track'
+      preLoaderRoute: typeof TrackRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/services/': {
       id: '/services/'
       path: '/services'
@@ -129,6 +199,9 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AssistantRoute: AssistantRoute,
   CentersRoute: CentersRoute,
+  HelpRoute: HelpRoute,
+  SignInRoute: SignInRoute,
+  TrackRoute: TrackRoute,
   ServicesSlugRoute: ServicesSlugRoute,
   ServicesIndexRoute: ServicesIndexRoute,
 }

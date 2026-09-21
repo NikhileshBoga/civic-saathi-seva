@@ -70,7 +70,7 @@ export function Header() {
           </label>
 
           <Link
-            to="/dashboard"
+            to="/sign-in"
             className="hidden items-center gap-2 rounded-md bg-primary px-3 py-2 text-sm font-medium text-primary-foreground transition-colors hover:opacity-90 sm:inline-flex"
           >
             <UserRound className="h-4 w-4" /> Sign In
@@ -101,7 +101,7 @@ export function Header() {
               </Link>
             ))}
             <Link
-              to="/dashboard"
+              to="/sign-in"
               onClick={() => setOpen(false)}
               className="mt-1 rounded-md bg-primary px-3 py-2.5 text-center text-sm font-medium text-primary-foreground"
             >
